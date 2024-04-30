@@ -7,7 +7,7 @@ import subprocess
 import llava.serve.gradio_web_server as gws
 
 # Execute the pip install command with additional options
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'git+https://github.com/huggingface/transformers@a98c41798cf6ed99e1ff17e3792d6e06a2ff2ff3', '-U'])
+# subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'git+https://github.com/huggingface/transformers@a98c41798cf6ed99e1ff17e3792d6e06a2ff2ff3', '-U'])
 
 def start_controller():
     print("Starting the controller")
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     print(f"args: {gws.args}")
 
     model_path = "MBZUAI/LLaVA-Meta-Llama-3-8B-Instruct-FT"
-    bits = int(os.getenv("bits", 4))
+    bits = 16
     concurrency_count = int(os.getenv("concurrency_count", 5))
 
     controller_proc = start_controller()
