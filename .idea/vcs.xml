@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="VcsDirectoryMappings">
-    <mapping directory="$PROJECT_DIR$/1-LLaVA" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/2-LLaVA-1.6" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/LLaMA-3-V" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Phi-3-V" vcs="Git" />
-  </component>
-</project>
