@@ -162,45 +162,7 @@ def http_bot(state, model_selector, temperature, top_p, max_new_tokens, request:
         return
 
     if len(state.messages) == state.offset + 2:
-        # First round of conversation
-        if "llava" in model_name.lower():
-            if 'llama-3' in model_name.lower():
-                template_name = "llama3"
-            elif 'phi-3' in model_name.lower():
-                template_name = "phi3_instruct"
-            elif 'llama-2' in model_name.lower():
-                template_name = "llava_llama_2"
-            elif "mistral" in model_name.lower() or "mixtral" in model_name.lower():
-                if 'orca' in model_name.lower():
-                    template_name = "mistral_orca"
-                elif 'hermes' in model_name.lower():
-                    template_name = "chatml_direct"
-                else:
-                    template_name = "mistral_instruct"
-            elif 'llava-v1.6-34b' in model_name.lower():
-                template_name = "chatml_direct"
-            elif "v1" in model_name.lower():
-                if 'mmtag' in model_name.lower():
-                    template_name = "v1_mmtag"
-                elif 'plain' in model_name.lower() and 'finetune' not in model_name.lower():
-                    template_name = "v1_mmtag"
-                else:
-                    template_name = "llava_v1"
-            elif "mpt" in model_name.lower():
-                template_name = "mpt"
-            else:
-                if 'mmtag' in model_name.lower():
-                    template_name = "v0_mmtag"
-                elif 'plain' in model_name.lower() and 'finetune' not in model_name.lower():
-                    template_name = "v0_mmtag"
-                else:
-                    template_name = "llava_v0"
-        elif "mpt" in model_name:
-            template_name = "mpt_text"
-        elif "llama-2" in model_name:
-            template_name = "llama_2"
-        else:
-            template_name = "vicuna_v1"
+        template_name = "llama3"
         print(f"Using chat template: {template_name}")
         new_state = conv_templates[template_name].copy()
         new_state.append_message(new_state.roles[0], state.messages[-2][1])
@@ -349,8 +311,8 @@ def build_demo(embed_mode, cur_dir=None, concurrency_count=10):
                 ], inputs=[imagebox, textbox])
 
                 with gr.Accordion("Parameters", open=False) as parameter_row:
-                    temperature = gr.Slider(minimum=0.0, maximum=1.0, value=0.2, step=0.1, interactive=True, label="Temperature",)
-                    top_p = gr.Slider(minimum=0.0, maximum=1.0, value=0.7, step=0.1, interactive=True, label="Top P",)
+                    temperature = gr.Slider(minimum=0.0, maximum=1.0, value=0.0, step=0.1, interactive=True, label="Temperature",)
+                    top_p = gr.Slider(minimum=0.0, maximum=1.0, value=0.0, step=0.1, interactive=True, label="Top P",)
                     max_output_tokens = gr.Slider(minimum=0, maximum=1024, value=512, step=64, interactive=True, label="Max output tokens",)
 
             with gr.Column(scale=8):

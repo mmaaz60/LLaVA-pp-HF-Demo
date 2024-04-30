@@ -7,7 +7,7 @@ import subprocess
 import llava.serve.gradio_web_server as gws
 
 # Execute the pip install command with additional options
-# subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'git+https://github.com/huggingface/transformers@a98c41798cf6ed99e1ff17e3792d6e06a2ff2ff3', '-U'])
+subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'git+https://github.com/huggingface/transformers@a98c41798cf6ed99e1ff17e3792d6e06a2ff2ff3', '-U'])
 
 def start_controller():
     print("Starting the controller")
@@ -18,7 +18,7 @@ def start_controller():
         "--host",
         "0.0.0.0",
         "--port",
-        "20000",
+        "10000",
     ]
     print(controller_command)
     return subprocess.Popen(controller_command)
@@ -37,7 +37,7 @@ def start_worker(model_path: str, bits=16):
         "--host",
         "0.0.0.0",
         "--controller",
-        "http://localhost:20000",
+        "http://localhost:10000",
         "--model-path",
         model_path,
         "--model-name",
