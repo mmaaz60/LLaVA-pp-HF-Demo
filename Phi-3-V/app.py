@@ -18,7 +18,7 @@ def start_controller():
         "--host",
         "0.0.0.0",
         "--port",
-        "10000",
+        "20000",
     ]
     print(controller_command)
     return subprocess.Popen(controller_command)
@@ -37,7 +37,7 @@ def start_worker(model_path: str, bits=16):
         "--host",
         "0.0.0.0",
         "--controller",
-        "http://localhost:10000",
+        "http://localhost:20000",
         "--model-path",
         model_path,
         "--model-name",
